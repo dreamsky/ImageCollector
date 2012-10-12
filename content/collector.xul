@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://imagescollector/skin/main.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://imagescollector/locale/ImagePicker.dtd">
+
+<window id="imagescollector-mainwindow" title="图片采集工具" orient="horizontal" onload="mainWindowOnLoad();" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://imagescollector/content/main.js"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="ip-string-bundle" src="chrome://imagescollector/locale/ImagePicker.properties" />
+    </stringbundleset>
+
+    <popupset>
+        <menupopup id="context-menu" onpopupshowing="">
+            <menuitem label="全选" oncommand="selectAll();"/>
+            <menuitem label="全不选" oncommand="unSelectAll();"/>
+        </menupopup>
+    </popupset>
+
+	<vbox flex="1">
+		<hbox flex="1">
+            <groupbox>
+                <caption>
+                    <label value="图片类型" />
+                </caption>
+                <hbox>
+                        <checkbox id="imageTypeJpegCB" label="JPEG" />
+                        <checkbox id="imageTypePngCB" label="PNG" />
+                        <checkbox id="imageTypeBmpCB" label="BMP" />
+                        <checkbox id="imageTypeGifCB" label="GIF" />
+                </hbox>
+            </groupbox>
+            <hbox align="center" style="margin-left:10px;">
+                <button label="筛选" oncommand="ImagePickerChrome.Controller.doFilter();" />
+                <button type="menu" label="查看" id="view-as-button" image="chrome://imagescollector/skin/Pictures.ico">
+                    <menupopup>
+                        <menuitem type="radio" name="thumbnailType" id="thumbnailTypeSmallMI" label="缩略图（小）"
+                            oncommand="ImagePickerChrome.Controller.doViewAS();" />
+                        <menuitem type="radio" name="thumbnailType" id="thumbnailTypeNormalMI" label="缩略图（中）"
+                            oncommand="ImagePickerChrome.Controller.doViewAS();" />
+                        <menuitem type="radio" name="thumbnailType" id="thumbnailTypeLargeMI" label="缩略图（大）"
+                            oncommand="ImagePickerChrome.Controller.doViewAS();" />
+                        <menuseparator />
+                        <menuitem type="checkbox" id="showImageSizeMI" label="显示图片大小"
+                            oncommand="ImagePickerChrome.Controller.doViewAS();" />
+                        <menuitem type="checkbox" id="showImageNameMI" label="显示图片名称"
+                            oncommand="ImagePickerChrome.Controller.doViewAS();" />
+                    </menupopup>
+                </button>
+				<button label="&toolbarbutton_select_all.label;" oncommand="selectAll();" />
+            </hbox>
+		</hbox>
+
+		<vbox id="imagesContainer"
+			style="overflow: auto; background-color: #FFFFFF; margin:5px; border-style: groove; border-width: 1px; border-color: #b9ae9d"
+			persist="height" height="300" width="750" align="center" flex="1"
+			context="context-menu" >
+		</vbox>
+
+		<spacer style="height: 10px"/>
+			<progressmeter mode="determined" id="downloadProgress" value="0" style="visibility:hidden;"/>
+		<spacer style="height: 10px"/>
+		<hbox>
+			<hbox flex="3" align="center">
+				<label value="保存到：" />
+				<textbox id="mainWindow-save-path" readonly="true" style="min-width: 15em;" flex="1"/>
+				<toolbarbutton id="select-folder" oncommand="selectSaveDirectory();"
+					tooltiptext="选择保存目录" image="chrome://imagescollector/skin/browse.png" />
+			</hbox>
+			<spacer flex="1" />
+			<button label="确定" oncommand="download();" />
+			<button id="cancel" label="取消" oncommand="close();"/>
+		</hbox>
+		<statusbar>
+			<statusbarpanel id="filterStat" flex="1" />
+			<statusbarpanel id="downloadStat" flex="1" />
+			<space flex="1" />
+			<toolbarbutton image="chrome://imagescollector/skin/help-about-16.png" tooltiptext="关于"
+						   oncommand="openAboutDialog();"/>
+		</statusbar>
+	</vbox>
+</window>
+

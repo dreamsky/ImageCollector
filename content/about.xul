@@ -1,0 +1,18 @@
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://imagescollector/skin/main.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://imagepicker/locale/ImagePicker.dtd">
+
+<dialog id="genericAbout" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+    buttons="accept" buttoniconaccept="close" chromehidden="menubar toolbar location directories status extrachrome" defaultButton="accept" title="关于">
+    <vbox id="clientBox" flex="1" style="width:300px;">
+        <label id="soft-name" crop="right" value="图片采集工具" />
+        <label id="version" crop="right" value="版本 0.1.0" />
+		<label id="info">发布时间：2012年10月11日</label>
+        <label id="info">创建者：山边小溪</label>
+		<label id="info">主页：http://www.jizhula.com</label>
+
+
+    </vbox>
+    <separator id="groove" class="groove" />
+</dialog>
+        

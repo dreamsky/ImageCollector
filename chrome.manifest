@@ -1,0 +1,9 @@
+content	 imagescollector	content/
+skin     imagescollector    classic/1.0      skin/classic/
+locale   imagescollector    en-US            locale/en-US/
+locale   imagescollector    zh-CN            locale/zh-CN/
+resource imagescollector                     modules/
+
+overlay	chrome://browser/content/browser.xul	        chrome://imagescollector/content/overlay.xul
+style   chrome://global/content/customizeToolbar.xul    chrome://imagescollector/skin/main.css
+
